@@ -173,7 +173,7 @@ mvall() {
     done
 }
 
-ppath="/home/mahyar/projects"
+ppath="/home/\u@\h/projects"
 CDPATH=".:$ppath/programming"
 export PROMPT_DIRTRIM=2
 alias startk='sudo /etc/init.d/kerio-kvc start'
@@ -195,13 +195,40 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME=~/.virtualenvs
 source "/usr/local/bin/virtualenvwrapper.sh"
 
-__parse_git_branch() {
+parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__parse_git_branch)[\j]$ '
+export PS1="\[\033[38;5;36m\]\u@\h \[\033[32m\]\w\[\033[93m\]\$(parse_git_branch)\[\033[35m\] [\j]\[\033[00m\] $ "
 
 alias vimm='vim $(git status --short --porcelain | grep "^ M" | cut -d" " -f3)'
 
 export GUILE_AUTO_COMPILE=0
 export PYTHONSTARTUP="$HOME/.pythonrc"
 export EDITOR=vim
+
+alias xclip='xclip -sel clipboard'
+
+# openconnect
+alias oc='echo -e "yes\naatar\na13553atar\n" | sudo openconnect vpn.adad.io'
+alias oc2='echo -e "yes\nmusketeer\nkerio4ever\n" | sudo openconnect nl.gozaronline.net'
+alias oc3='echo -e "yes\naliam\nali09354605474\n" | sudo openconnect cfr.hiserver.in'
+alias of='sudo ip route add 10.0.12.0/24 via 10.0.10.1'
+
+# git
+alias pull='git pull origin master'
+alias stat='git status'
+
+#weather
+wthr ()
+{
+    curl wttr.in/"$1"
+}
+
+#django
+alias run='./manage.py runserver 0.0.0.0:8080'
+#search
+alias srch='grep -inr $@'
+#kerio
+alias kerio='sudo /etc/init.d//kerio-kvc $@'
+#dl manager
+alias dl='axel -n10 -a'
