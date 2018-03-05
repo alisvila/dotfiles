@@ -173,7 +173,7 @@ mvall() {
     done
 }
 
-ppath="/home/\u@\h/projects"
+ppath="/home/ali/workflow"
 CDPATH=".:$ppath/programming"
 export PROMPT_DIRTRIM=2
 alias startk='sudo /etc/init.d/kerio-kvc start'
