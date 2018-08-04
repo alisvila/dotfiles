@@ -447,6 +447,15 @@ endif
 runtime! ftplugin/man.vim
 runtime! macros/matchit.vim
 
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'papercolor'
+
+set list          " Display unprintable characters f12 - switches
+set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
+
+
 " }}}
 
 "| badwolf                 https://github.com/mahyarap/badwolf.git
@@ -467,3 +476,6 @@ runtime! macros/matchit.vim
 "| vim-python-pep8-indent  https://github.com/Vimjas/vim-python-pep8-indent.git
 "| vim-surround            https://github.com/tpope/vim-surround.git
 "| vim-toml                https://github.com/cespare/vim-toml.git
+"| typescript-vim          https://github.com/leafgarland/typescript-vim.git
+"| vim-airline             https://github.com/vim-airline/vim-airline
+"| vim-airline-themes      https://github.com/vim-airline/vim-airline-themes

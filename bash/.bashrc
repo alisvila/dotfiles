@@ -217,10 +217,7 @@ export EDITOR=vim
 alias xclip='xclip -sel clipboard'
 
 # openconnect
-alias oc='echo -e "overloard" | echo -e "yes\naatar\na13553atar\n" | sudo openconnect vpn.adad.io'
 alias oc2='echo -e "yes\nmusketeer\nkerio4ever\n" | sudo openconnect nl.gozaronline.net'
-alias oc3='echo -e "yes\naliam\nali09354605474\n" | sudo openconnect cfr.hiserver.in'
-alias oc4='echo -e "overloard\nyes\nsamad\n123456\n" | sudo -S openconnect vpn.sabinarya.com'
 alias oc5='echo -e "overloard\nyes\nkm61595\ns4b2a\n" | sudo -S openconnect c1.irserver.xyz'
 alias of='sudo ip route add 10.0.12.0/24 via 10.0.10.1'
 
