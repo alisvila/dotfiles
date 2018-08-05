@@ -14,6 +14,8 @@ execute pathogen#infect()
 " set termguicolors
 " else
 set t_Co=256
+let g:solarized_termcolors=256
+
 " endif
 
 " Enable syntax highlighting
@@ -23,7 +25,9 @@ syntax enable
 " let g:rehash256 = 1
 " let g:molokai_original = 1
 " colorscheme molokai
-colorscheme badwolf
+" colorscheme badwolf
+set background=dark
+colorscheme solarized
 
 " Minimal number of screen lines to keep above and below the cursor.
 set scrolloff=1
@@ -450,7 +454,9 @@ runtime! macros/matchit.vim
 " airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'papercolor'
+" let g:airline_theme = 'papercolor'
+let g:airline_theme = 'solarized'
+let g:airline_solarized_bg='dark'
 
 set list          " Display unprintable characters f12 - switches
 set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
@@ -479,3 +485,4 @@ set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars map
 "| typescript-vim          https://github.com/leafgarland/typescript-vim.git
 "| vim-airline             https://github.com/vim-airline/vim-airline
 "| vim-airline-themes      https://github.com/vim-airline/vim-airline-themes
+"| solirized               http://github.com/altercation/vim-colors-solarized.git
