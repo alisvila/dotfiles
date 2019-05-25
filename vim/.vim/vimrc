@@ -461,6 +461,13 @@ let g:airline_solarized_bg='dark'
 set list          " Display unprintable characters f12 - switches
 set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
 
+" nerdtree
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
 
 " }}}
 
@@ -486,3 +493,4 @@ set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars map
 "| vim-airline             https://github.com/vim-airline/vim-airline
 "| vim-airline-themes      https://github.com/vim-airline/vim-airline-themes
 "| solirized               http://github.com/altercation/vim-colors-solarized.git
+"| nerdtree                https://github.com/scrooloose/nerdtree.git
