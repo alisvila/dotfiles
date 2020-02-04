@@ -14,7 +14,8 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font pango:monospace 8
-font pango:Source Sans Pro 10
+# font pango:Source Sans Pro semibold 10
+font pango:Font Awesome 5 Solid 10 
 
 # hiding borders adjacent to the screen edges
 hide_edge_borders none
@@ -103,7 +104,11 @@ set $workspace1 "1: Chrome "
 set $workspace2 "2: Editor "
 set $workspace3 "3: Terminal "
 set $ws4 "4: Debug "
-set $ws5 "5: Chat "
+set $ws5 "5: Dev tool "
+set $ws6 "6: Chat "
+set $ws7 "7: No Name"
+set $ws8 "8: No Name"
+set $ws9 "9: No Name"
 set $workspace10 "10: Music "
 
 # switch to workspace
@@ -112,10 +117,10 @@ bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
@@ -124,23 +129,28 @@ bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 assign [class="Google-chrome"] $workspace1
 assign [class="Code"] $workspace2
 assign [class="terminal"] $workspace3
-assign [class="TelegramDesktop"] $ws5
+assign [class="TelegramDesktop"] $ws6
 for_window [class="Spotify"] move to workspace $workspace10
+for_window [title="Kuknos Desktop Wallet"] move to workspace $ws4
+for_window [title="Developer Tools"] move to workspace $ws5
 
 workspace $workspace1 output HDMI-1
 workspace $workspace2 output HDMI-1
 workspace $workspace3 output DP-1
 workspace $workspace10 output DP-1
+workspace $ws4 output DP-1
 workspace $ws5 output DP-1
+workspace $ws6 output DP-1
+workspace $ws7 output HDMI-1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -181,16 +191,6 @@ bindsym $mod+r mode "resize"
 #         status_command i3status
 # }
 
-exec google-chrome
-exec spotify
-exec code
-exec terminator
-exec telegram-desktop
-exec _always feh --bg-scale /home/ali/Pictures/wallpaper.jpg
-exec xrandr --output DP-1 --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --primary --mode 1366x768 --pos 1366x0 --rotate normal
-exec --no-startup-id nm-applet
-
-for_window [class="Electron" instance="electron"] float enable
 # start i3bar to display a workspace bar
 bar {
     output                  HDMI-1
@@ -217,9 +217,8 @@ bar {
 }
 
 bar {
+status_command i3blocks -c ~/.config/i3blocks/config
     output                  DP-1
-    status_command i3status --config i3status-small.conf
-
     colors {
         background  #212121
         statusline  #dddddd
@@ -233,10 +232,24 @@ bar {
     }
 }
 
+
+exec google-chrome
+exec spotify
+exec code
+exec terminator
+exec telegram-desktop
+exec _always feh --bg-scale /home/ali/Pictures/wallpaper.jpg
+exec xrandr --output DP-1 --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --primary --mode 1366x768 --pos 1366x0 --rotate normal
+exec --no-startup-id nm-applet
+exec 'pulseaudio &'
+
 bindsym $mod+p exec "i3lock-fancy -f Source-Sans-Pro"
 
-exec "setxkbmap -layout us,ir"
-exec "setxkbmap -option 'grp:alt_shift_toggle'"
+# change keyboard layout
+exec _always "setxkbmap -layout us,ir"
+exec _always "setxkbmap -option 'grp:alt_shift_toggle'"
 
 bindsym Shift+Print exec "sleep 0.2; gnome-screenshot -a -e 'xclip -selection c -t image/png < $f'"
 
+exec "ip link add name docker0 type bridge"
+exec "ip addr add dev docker0 172.17.0.1/16"
