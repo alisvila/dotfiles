@@ -139,7 +139,7 @@ assign [class="Google-chrome"] $workspace1
 assign [class="Code"] $workspace2
 assign [class="terminal"] $workspace3
 assign [class="TelegramDesktop"] $ws6
-for_window [class="Spotify"] move to workspace $workspace10
+assign [class="Spotify"] $workspace10
 for_window [title="Kuknos Desktop Wallet"] move to workspace $ws4
 for_window [title="Developer Tools"] move to workspace $ws5
 
@@ -148,7 +148,7 @@ workspace $workspace2 output HDMI-1
 workspace $workspace3 output DP-1
 workspace $workspace10 output DP-1
 workspace $ws4 output DP-1
-workspace $ws5 output DP-1
+workspace $ws5 output HDMI-1
 workspace $ws6 output DP-1
 workspace $ws7 output HDMI-1
 
@@ -233,7 +233,7 @@ status_command i3blocks -c ~/.config/i3blocks/config
 }
 
 
-exec google-chrome
+exec google-chrome --password-store=gnome
 exec spotify
 exec code
 exec terminator
@@ -242,12 +242,13 @@ exec _always feh --bg-scale /home/ali/Pictures/wallpaper.jpg
 exec xrandr --output DP-1 --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --primary --mode 1366x768 --pos 1366x0 --rotate normal
 exec --no-startup-id nm-applet
 exec 'pulseaudio &'
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
 bindsym $mod+p exec "i3lock-fancy -f Source-Sans-Pro"
 
 # change keyboard layout
-exec _always "setxkbmap -layout us,ir"
-exec _always "setxkbmap -option 'grp:alt_shift_toggle'"
+exec "setxkbmap -layout us,ir"
+exec "setxkbmap -option 'grp:alt_shift_toggle'"
 
 bindsym Shift+Print exec "sleep 0.2; gnome-screenshot -a -e 'xclip -selection c -t image/png < $f'"
 
